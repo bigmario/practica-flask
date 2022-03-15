@@ -1,18 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'bootstrap/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Flask Project |{% endblock %}</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
+{% block head %}
+    {{ super() }}
 
-<body>
-    <header>
+    <title>
+        {% block title %}Flask Platzi |{% endblock %}
+    </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+{% endblock %}
+
+{% block body %}
+    {% block navbar %}
         {% include 'navbar.html' %}
-    </header>
-    {% block content %}{% endblock %}
-</body>
+    {% endblock %}
 
-</html>
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-success alert_dismissible">
+            <button class="close" type="button" data-dismiss="alert">
+                &times;
+            </button>
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block scripts %}
+        {{ super() }}
+    {% endblock %}
+{% endblock %}

@@ -1,5 +1,6 @@
 flask
 flask-bootstrap
 flask-wtf
+flask-testing
 python-dotenv
 black
