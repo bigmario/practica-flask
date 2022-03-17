@@ -2,6 +2,7 @@ flask
 flask-bootstrap
 flask-wtf
 flask-testing
+Flask-PyMongo
 blinker
 python-dotenv
 black
