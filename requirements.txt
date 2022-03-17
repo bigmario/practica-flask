@@ -2,5 +2,6 @@ flask
 flask-bootstrap
 flask-wtf
 flask-testing
+blinker
 python-dotenv
 black
