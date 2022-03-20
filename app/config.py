@@ -10,3 +10,4 @@ class Config:
     FLASK_APP = os.getenv("FLASK_APP")
     FLASK_ENV = os.getenv("FLASK_ENV")
     FLASK_DEBUG = os.getenv("FLASK_DEBUG")
+    MONGO_URI = os.getenv("MONGO_URI")
