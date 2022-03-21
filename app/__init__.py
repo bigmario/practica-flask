@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
-from flask_pymongo import PyMongo
 
 from .config import Config
 from .auth import auth
@@ -12,8 +11,6 @@ def create_app():
     bootstrap = Bootstrap(app)
 
     app.config.from_object(Config)
-
-    mongo = PyMongo(app)
 
     app.register_blueprint(auth)
 

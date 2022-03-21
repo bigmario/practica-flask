@@ -1,0 +1,12 @@
+{% block content %}
+{% if username %}
+<h1>Bienvenido {{ username | capitalize }}</h1>
+{%endif%}
+
+<h2>All Users</h2>
+<ul>
+    {% for user in users %}
+    <li>{{user.username}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

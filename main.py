@@ -1,4 +1,5 @@
 from app import create_app
+from app.mongo_service import MongoConn
 from app.forms import LoginForm
 from flask import (
     request,
@@ -13,6 +14,8 @@ from flask import (
 import unittest
 
 app = create_app()
+
+mongo = MongoConn(app)
 
 todo_list = ["Comprar cafe", "Dormir", "Comer"]
 
@@ -39,6 +42,20 @@ def index():
     response = make_response(redirect("/hello"))
     session["user_ip"] = user_ip
     return response
+
+
+@app.route("/users")
+def search_all():
+    online_users = mongo.get_users()
+    context = {"users": online_users}
+    return render_template("users.html", **context)
+
+
+@app.route("/users/<ObjectId:user_id>")
+def search_one(user_id):
+    online_user = mongo.get_user(user_id)
+    context = {"user": online_user}
+    return render_template("user.html", **context)
 
 
 @app.route("/hello", methods=["GET", "POST"])

@@ -1,0 +1,11 @@
+{% block content %}
+{% if username %}
+<h1>Bienvenido {{ username | capitalize }}</h1>
+{%endif%}
+
+<h2>One User</h2>
+<ul>
+    {{user.username}}
+    {{user.password}}
+</ul>
+{% endblock %}

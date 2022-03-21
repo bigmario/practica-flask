@@ -3,6 +3,8 @@ flask-bootstrap
 flask-wtf
 flask-testing
 Flask-PyMongo
+motor
+pydantic[email,dotenv]
 blinker
 python-dotenv
 black
