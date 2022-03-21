@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% block content %}
 {% if username %}
 <h1>Bienvenido {{ username | capitalize }}</h1>
@@ -5,7 +6,6 @@
 
 <h2>One User</h2>
 <ul>
-    {{user.username}}
-    {{user.password}}
+    Nombre: {{user.username}} <br> Password: {{user.password}}
 </ul>
 {% endblock %}

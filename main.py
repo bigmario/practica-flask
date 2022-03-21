@@ -1,6 +1,3 @@
-from app import create_app
-from app.mongo_service import MongoConn
-from app.forms import LoginForm
 from flask import (
     request,
     make_response,
@@ -12,6 +9,11 @@ from flask import (
 )
 
 import unittest
+
+from app import create_app
+from app.mongo_service import MongoConn
+from app.forms import LoginForm
+
 
 app = create_app()
 
@@ -44,20 +46,6 @@ def index():
     return response
 
 
-@app.route("/users")
-def search_all():
-    online_users = mongo.get_users()
-    context = {"users": online_users}
-    return render_template("users.html", **context)
-
-
-@app.route("/users/<ObjectId:user_id>")
-def search_one(user_id):
-    online_user = mongo.get_user(user_id)
-    context = {"user": online_user}
-    return render_template("user.html", **context)
-
-
 @app.route("/hello", methods=["GET", "POST"])
 def hello():
     user_ip = session.get("user_ip")
@@ -79,6 +67,20 @@ def hello():
         return redirect(url_for("index"))
 
     return render_template("hello.html", **context)
+
+
+@app.route("/users")
+def search_all():
+    online_users = mongo.get_users()
+    context = {"users": online_users}
+    return render_template("users.html", **context)
+
+
+@app.route("/users/<ObjectId:user_id>")
+def search_one(user_id):
+    online_user = mongo.get_user(user_id)
+    context = {"user": online_user}
+    return render_template("user.html", **context)
 
 
 if __name__ == "__main__":
